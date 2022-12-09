@@ -18,7 +18,7 @@ function mainProject() {
     if (peso.value === "" || altura.value === "") {
       result.innerHTML = `<p class="negado">Preencha todos os dados.</p >`;
     } else if (Number.isNaN(imc)) {
-      result.innerHTML = `<p class="negado">Valores não permitidos, tente novamente!</p >`;
+      result.innerHTML = `<p class="negado">Valores inválidos, tente novamente!</p >`;
     } else {
       if (imc < 18.5) {
         resultado = "Abaixo do peso";
