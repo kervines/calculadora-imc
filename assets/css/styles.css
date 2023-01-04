@@ -1,25 +1,30 @@
 :root {
   --primary-color: rgb(46, 124, 78);
-  --primary-color-darker: rgb(31, 88, 74);
+  --primary-color-darker: rgb(21, 120, 44);
   --color-paragraph: rgb(131, 194, 155);
   --color-span: rgb(102, 25, 25);
   --color-bg-span: rgb(252, 138, 138);
 }
 
 * {
-  box-sizing: border-box;
   outline: 0;
+  box-sizing: border-box;
   font-family: "Roboto Mono", monospace;
 }
 
 body {
   margin: 0;
   padding: 0;
-  width: 100%;
 
+  margin-top: 10%;
+
+  background: fixed;
   background: var(--primary-color);
   background-image: url("../img/scale.jpg");
   background-size: cover;
+  background-repeat: no-repeat;
+
+  background-position-y: -15rem;
 
   font-family: sans-serif;
   font-size: 1.3rem;
@@ -37,12 +42,13 @@ label {
 }
 
 .container {
-  max-width: 640px;
+  max-width: 500px;
 
-  margin: 100px auto;
+  margin: 0 auto;
+
   background-color: #fff;
   padding: 20px;
-  border: 10px solid var(--primary-color-darker);
+  /* border: 10px solid var(--primary-color-darker); */
   border-radius: 10px;
 }
 
