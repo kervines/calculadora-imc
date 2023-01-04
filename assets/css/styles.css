@@ -109,10 +109,20 @@ form button:hover {
   border-radius: 10px;
 }
 
-@media (max-width: 400px) {
+span {
+  font-size: 1rem;
+  padding: 1rem;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  color: #fff;
+}
+
+@media (max-width: 420px) {
   body {
-    background-size: auto;
-    background-position-y: 50%;
+    height: 80vh;
+    background-size: cover;
+    background-position-y: -30px;
     background-position-x: 50%;
 
     overflow: hidden;
