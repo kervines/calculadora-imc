@@ -47,9 +47,6 @@ function mainProject() {
           2
         )}. Situação: ${resultado}</p>`;
       }
-      // result.innerHTML = `<p class="aceito">Seu IMC é ${imc.toFixed(
-      //   2
-      // )}. Situação: ${resultado}</p>`;
     }
   }
   form.addEventListener('submit', calcularImc);
