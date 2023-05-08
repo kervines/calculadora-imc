@@ -107,6 +107,39 @@ form button:hover {
   border-radius: 10px;
 }
 
+.anormal {
+  display: block;
+  text-align: center;
+
+  color: #a58c00;
+  background-color: #fae04c;
+
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.anormal-1 {
+  display: block;
+  text-align: center;
+
+  color: #a53a00;
+  background-color: #fa754c;
+
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.anormal-2 {
+  display: block;
+  text-align: center;
+
+  color: #a51900;
+  background-color: #f74f31;
+
+  padding: 1rem;
+  border-radius: 10px;
+}
+
 span {
   font-size: 1rem;
   padding: 1rem;
