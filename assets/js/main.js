@@ -1,54 +1,36 @@
-function mainProject() {
-  const form = document.querySelector('#form');
-  const result = document.querySelector('.result');
+const form = document.querySelector('#form');
+const result = document.querySelector('.result');
+//função principal que hospeda todas as variaveis do DOM
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const inputPeso = form.querySelector('#input-weigth');
+  const inputAltura = form.querySelector('#input-heigth');
 
-  function calcularImc(event) {
-    event.preventDefault();
-    const peso = form.querySelector('#input-weigth');
-    const altura = form.querySelector('#input-heigth');
+  const peso = Number(inputPeso.value.replace(',', '.'));
+  const altura = Number(inputAltura.value.replace(',', '.'));
 
-    const imc =
-      parseFloat(peso.value) / parseFloat(altura.value * altura.value);
-    let resultado;
+  const msgNegadoPeso = `<p class="negado">Peso inválido! Preencha os dados corretamente.</p >`;
+  const msgNegadoAltura = `<p class="negado">Altura inválida! Preencha os dados corretamente.</p >`;
 
-    if (peso.value === '' || altura.value === '') {
-      result.innerHTML = `<p class="negado">Preencha todos os dados.</p >`;
-    } else if (Number.isNaN(imc)) {
-      result.innerHTML = `<p class="negado">Valores inválidos, tente novamente!</p >`;
-    } else {
-      if (imc < 18.5) {
-        resultado = 'Abaixo do peso';
-        result.innerHTML = `<p class="anormal">Seu IMC é ${imc.toFixed(
-          2
-        )}. Situação: ${resultado}</p>`;
-      } else if (imc >= 18.5 && imc < 24.9) {
-        resultado = 'Peso normal';
-        result.innerHTML = `<p class="aceito">Seu IMC é ${imc.toFixed(
-          2
-        )}. Situação: ${resultado}</p>`;
-      } else if (imc >= 25 && imc < 29.9) {
-        resultado = 'Acima do peso';
-        result.innerHTML = `<p class="anormal">Seu IMC é ${imc.toFixed(
-          2
-        )}. Situação: ${resultado}</p>`;
-      } else if (imc >= 30 && imc < 34.9) {
-        resultado = 'Obesidade 1';
-        result.innerHTML = `<p class="anormal-1">Seu IMC é ${imc.toFixed(
-          2
-        )}. Situação: ${resultado}</p>`;
-      } else if (imc >= 35 && imc < 39.9) {
-        resultado = 'Obesidade 2';
-        result.innerHTML = `<p class="anormal-1">Seu IMC é ${imc.toFixed(
-          2
-        )}. Situação: ${resultado}</p>`;
-      } else {
-        resultado = 'Obesidade 3';
-        result.innerHTML = `<p class="anormal-2">Seu IMC é ${imc.toFixed(
-          2
-        )}. Situação: ${resultado}</p>`;
-      }
-    }
-  }
-  form.addEventListener('submit', calcularImc);
+  if (!peso) return (result.innerHTML = msgNegadoPeso);
+  if (!altura) return (result.innerHTML = msgNegadoAltura);
+
+  const imc = getImc(peso, altura);
+  setResult(imc);
+});
+// função responsavel por calcular o imc = (peso) x (altura)²
+function getImc(peso, altura) {
+  const imc = peso / altura ** 2;
+  return imc;
 }
-mainProject();
+//função responsável por imprimir os resultados. é utilizado o imc para fazer uma condicional que determinar o imc com base no intervalo de peso.
+function setResult(imc) {
+  const range = ['Abaixo do peso','Peso normal','Acima do peso','Obesidade grau 1','Obesidade grau 2','Obesidade grau 3'];
+  
+  if (imc > 39.9) return (result.innerHTML = `<p class="anormal-2">Seu IMC é ${imc.toFixed(2).replace('.', ',')}. <br>Status: ${range[5]}!</p>`);
+  if (imc >= 34.9) return (result.innerHTML = `<p class="anormal-1">Seu IMC é ${imc.toFixed(2).replace('.', ',')}. <br>Status: ${range[4]}!</p>`);
+  if (imc >= 29.9) return (result.innerHTML = `<p class="anormal-1">Seu IMC é ${imc.toFixed(2).replace('.', ',')}. <br>Status: ${range[3]}!</p>`);
+  if (imc >= 24.9) return (result.innerHTML = `<p class="anormal">Seu IMC é ${imc.toFixed(2).replace('.', ',')}. <br>Status: ${range[2]}!</p>`);
+  if (imc >= 18.5) return (result.innerHTML = `<p class="aceito">Seu IMC é ${imc.toFixed(2).replace('.', ',')}. <br>Status: ${range[1]}!</p>`);
+  if (imc < 18.5) return (result.innerHTML = `<p class="anormal">Seu IMC é ${imc.toFixed(2).replace('.', ',')}. <br>Status: ${range[0]}!</p>`);
+}
